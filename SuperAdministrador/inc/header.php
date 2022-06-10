@@ -1,5 +1,5 @@
 <div class="row" >
-    <nav class="navbar" style="background-color: #ff7e2f; minheight: 10vh;">
+    <nav class="navbar">
     <a class="navbar-brand" href="index.php?nueva_venta=true">
         <img src="../src/image/vairaNav.png"  width="50" height="50" style="margin-left: 8px;margin-top: -5px" class="d-inline-block align-top" alt="">
     </a>
