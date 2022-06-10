@@ -116,7 +116,7 @@ if(isset($_POST['cargar_csv'])){
   move_uploaded_file($_FILES['adjunto']['tmp_name'], $archivo_subido);
   $resultado = process_csv($archivo_subido);
   foreach ($resultado as $linea){
-    if($linea){
+    if($linea != null){
       $info_producto = explode(",", $linea[0]);
       if($info_producto[0] != ''){
         $data = [
@@ -133,15 +133,29 @@ if(isset($_POST['cargar_csv'])){
       $status = json_decode(POST('SuperAdministrador/services/addMultipleProducts.php', $data), true);
     }
   }
-  if($status[0] != '¡Error!')
-    echo ('
-      <script>
-        $title = "Exito!"
-        $msg = "Productos agregados correctamente"
-        alertSuccess($msg)
-      </script>
-    ');
-
+  if($status != null){
+    if($status[0] != '¡Error!')
+      echo ('
+        <script>
+          $title = "Exito!"
+          $msg = "Productos agregados correctamente"
+          alertSuccess($msg)
+        </script>
+      ');
+    else
+      echo ('
+        <script>
+          $msg = "Error al agregar los productos"
+          alertError($msg)
+        </script>
+      ');
+    } else 
+      echo ('
+        <script>
+          $msg = "Error al agregar los productos"
+          alertError($msg)
+        </script>
+      ');
   unlink($archivo_subido);
 }
 

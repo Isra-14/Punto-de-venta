@@ -169,7 +169,11 @@ function alertError(msg){
         'Error',
         msg,
         'error',
-      )
+      ).then((result) => {
+        if (result.isConfirmed) {
+          location.reload()
+        }
+      })
 }
 
 function alertSuccess(title, msg){
